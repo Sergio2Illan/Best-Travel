@@ -9,6 +9,5 @@ public class BestTravelApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BestTravelApplication.class, args);
 	}
-	//probando commit
 
 }

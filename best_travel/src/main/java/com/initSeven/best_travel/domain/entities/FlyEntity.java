@@ -2,13 +2,11 @@ package com.initSeven.best_travel.domain.entities;
 
 import com.initSeven.best_travel.util.AeroLine;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity(name = "fly")
 @NoArgsConstructor
@@ -31,5 +29,14 @@ public class FlyEntity implements Serializable {
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private AeroLine aeroLine;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true,
+            mappedBy = "fly"
+    )
+    private Set<TicketEntity> tickets;
 
 }

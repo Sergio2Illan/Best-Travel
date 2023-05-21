@@ -1,8 +1,6 @@
 package com.initSeven.best_travel.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,4 +29,15 @@ public class ReservationEntity implements Serializable {
     private LocalDate dateEnd;
     private Integer totalDays;
     private BigDecimal price;
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private HotelEntity hotel;
+    @ManyToOne
+    @JoinColumn(name = "tour_id", nullable = true) //puede tener una reserva o un ticket pero no los dos a la vez por unidad
+    private TourEntity tour;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
+
+
 }
